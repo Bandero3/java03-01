@@ -2,8 +2,7 @@ package day.two;
 
 public class JavaPrograma {
     public static void main(String[] args) {
-        System.out.println("Goodbye world");
+        System.out.println("Hello sir");
         //Test
-        System.out.println("New comment");
     }
 }
