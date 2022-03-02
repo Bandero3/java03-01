@@ -25,14 +25,38 @@ public class IfExample {
 
         if(nullValue()!=null){
             System.out.println("Ne null");
+        }else{
+            System.out.println("Ivesta reiksme yra null");
         }
+
+        if(a > b){
+            System.out.println("a > b");
+        }else if(a != b && b < 50){
+            System.out.println("10 !=20");
+
+        }else if(a < b){
+            System.out.println("10 < 20");
+
+        }else{
+            System.out.println("Neatitiko jokios salygos");
+        }
+        // new one line if
+        int result = a > b ? 50 : 100;
+        System.out.println("result " + result);
+
+/*        if (a>b){
+            result = 50;
+        }else{
+            result = 100;
+        }*/
     }
+
 
     private static boolean isNumberBigger(int a, int b) {
         return a > b;
     }
 
     private static String nullValue() {
-        return "";
+        return null;
     }
 }
