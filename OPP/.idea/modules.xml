@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/3DAY/3DAY.iml" filepath="$PROJECT_DIR$/3DAY/3DAY.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Class/Class.iml" filepath="$PROJECT_DIR$/Class/Class.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DayFour/DayFour.iml" filepath="$PROJECT_DIR$/DayFour/DayFour.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/OPP.iml" filepath="$PROJECT_DIR$/.idea/OPP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PrimTypes/PrimTypes.iml" filepath="$PROJECT_DIR$/PrimTypes/PrimTypes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SecondWeek/SecondWeek.iml" filepath="$PROJECT_DIR$/SecondWeek/SecondWeek.iml" />
+    </modules>
+  </component>
+</project>
