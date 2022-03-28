@@ -37,6 +37,11 @@ public class Main {
             case "3" -> getCost(scanner, budget);
             case "4" -> getIncome(scanner, budget);
             case "5" -> System.out.println("Programa baige darba");
+            case "6" -> System.out.printf("Jusu balansas yra: %.2f\n",budget.balance());
+            case "7" -> showCosts(budget);
+            case "8" -> showIncomes(budget);
+            case "9" -> removeCost(scanner,budget);
+            case "10" -> removeIncome(scanner,budget);
             default -> System.out.println("Tokio veiksmo nera");
         }
     }
@@ -47,7 +52,12 @@ public class Main {
                 2. Ivesti pajamas
                 3. Gauti islaidas
                 4. Gauti pajamas
-                5. Pabaiga""");
+                5. Pabaiga
+                6. Balansas
+                7. Visos islaidos
+                8. Visos pajamos
+                9. Istrinti islaidas
+                10. Istrinti pajamas""");
     }
 
     private void createCost(Scanner scanner, Budget budget){
@@ -59,6 +69,7 @@ public class Main {
         String type = scanner.nextLine();
         budget.setCost(new Cost(new BigDecimal(sum), LocalDateTime.now(), TransferStatus.DONE, CostTypes.valueOf(type),CostCategory.valueOf(category)));
     }
+
     private void createIncome(Scanner scanner, Budget budget){
         System.out.println("Iveskite pajamu suma");
         String value = scanner.nextLine();
@@ -98,4 +109,27 @@ public class Main {
         Income income = budget.getIncome(category,localDate);
         System.out.println(income);
     }
+
+    private void showIncomes(Budget budget){
+        for(Income i: budget.getIncomes()){
+            System.out.println(i);
+        }
+    }
+    private void showCosts(Budget budget){
+        for(Cost c: budget.getCosts()){
+            System.out.println(c);
+        }
+    }
+
+    private void removeIncome(Scanner scanner, Budget budget){
+        System.out.println("Iveskite indexa kuri norite istrinti");
+        int index = Integer.parseInt(scanner.nextLine());
+        budget.removeIncome(index);
+    }
+    private void removeCost(Scanner scanner, Budget budget){
+        System.out.println("Iveskite indexa kuri norite istrinti");
+        int index = Integer.parseInt(scanner.nextLine());
+        budget.removeCost(index);
+    }
+
 }

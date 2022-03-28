@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Income {
+    private static int counter = 0;
+
+    private final int index;
     private final BigDecimal sum;
     private final LocalDate date;
     private final Person person;
@@ -12,6 +15,7 @@ public class Income {
     private final IncomeCategory incomeCategory;
 
     public Income(BigDecimal sum, LocalDate date, Person person, TransferStatus transferStatus, boolean isTransferToBank,IncomeCategory incomeCategory) {
+        index = counter++;
         this.sum = sum;
         this.date = date;
         this.person = person;
@@ -22,6 +26,9 @@ public class Income {
 
     public BigDecimal getSum() {
         return sum;
+    }
+    public int getIndex(){
+        return index;
     }
 
     public LocalDate getDate() {
@@ -51,7 +58,8 @@ public class Income {
     @Override
     public String toString() {
         return "Income{" +
-                "sum=" + sum +
+                "index=" + index +
+                ", sum=" + sum +
                 ", date=" + date +
                 ", person=" + person +
                 ", transferStatus=" + transferStatus +

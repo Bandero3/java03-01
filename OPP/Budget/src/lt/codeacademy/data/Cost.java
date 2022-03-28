@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Cost {
+    private static int counter = 0;
+
+    private final int index;
     private final BigDecimal sum;
     private final LocalDateTime date;
     private final Person person;
@@ -17,6 +20,7 @@ public class Cost {
     }
 
     public Cost(BigDecimal sum, LocalDateTime date, Person person, TransferStatus transferStatus, CostTypes costTypes, CostCategory costCategory) {
+        index=counter++;
         this.sum = sum;
         this.date = date;
         this.person = person;
@@ -53,11 +57,16 @@ public class Cost {
         this.transferStatus = transferStatus;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     @Override
     public String toString() {
         return "Cost{" +
-                "sum=" + sum +
-                ", date=" + date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) +
+                "index=" + index +
+                ", sum=" + sum +
+                ", date=" + date +
                 ", person=" + person +
                 ", transferStatus=" + transferStatus +
                 ", costTypes=" + costTypes +
