@@ -4,54 +4,49 @@ import lt.codeacademy.data.Cost;
 import lt.codeacademy.data.CostCategory;
 import lt.codeacademy.data.Income;
 import lt.codeacademy.data.IncomeCategory;
+import lt.codeacademy.data.Entry;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Budget {
-    private final List<Income> incomes;
-    private final List<Cost> costs;
+    private final List<Entry> entries;
 
     public Budget() {
-        incomes = new ArrayList<>();
-        costs = new ArrayList<>();
+        entries = new ArrayList<>();
+    }
+    public void addEntry(Entry entry) {
+        entries.add(entry);
     }
 
-    public double balance() {
-        double incomeSum = 0;
-        double costSum = 0;
-        for (Income i : incomes) {
-            incomeSum += i.getSum().doubleValue();
-        }
-        for (Cost c : costs) {
-            costSum += c.getSum().doubleValue();
-        }
-        return incomeSum - costSum;
-    }
 
     public List<Income> getIncomes() {
+        List<Income> incomes = new ArrayList<>();
+        for(Entry entry : entries){
+            if(entry instanceof Income income){
+                incomes.add(income);
+            }
+        }
         return incomes;
     }
 
     public List<Cost> getCosts() {
+        List<Cost> costs = new ArrayList<>();
+        for(Entry entry : entries){
+            if(entry instanceof Cost cost){
+                costs.add(cost);
+            }
+        }
         return costs;
     }
 
-    public void setIncome(Income income) {
-        incomes.add(income);
-    }
-
-    public void setCost(Cost cost) {
-        costs.add(cost);
-    }
-
     public Income getIncome(IncomeCategory category, LocalDate localDate) {
-        for (Income income : incomes) {
-            if (category.equals(income.getIncomeCategory()) && localDate.isEqual(income.getDate())) {
+        for (Entry entry : entries) {
+            if (entry instanceof  Income income
+                    && category.equals(income.getIncomeCategory())
+                    && localDate.isEqual(income.getDate().toLocalDate())) {
                 return income;
             }
         }
@@ -59,29 +54,49 @@ public class Budget {
     }
 
     public Cost getCost(CostCategory costCategory, LocalDate localDate) {
-        for (Cost cost : costs) {
-            if (costCategory.equals(cost.getCostCategory()) && cost.getDate().toLocalDate().isEqual(localDate)) {
+        for (Entry entry : entries) {
+            if (entry instanceof Cost cost
+                    && costCategory.equals(cost.getCostCategory())
+                    && cost.getDate().toLocalDate().isEqual(localDate)) {
                 return cost;
             }
         }
         return null;
     }
 
+    public double balance() {
+        double incomeSum = 0;
+        double costSum = 0;
+        for (Entry entry : entries) {
+            if(entry instanceof Income){
+
+            }
+            incomeSum += entry.getSum().doubleValue();
+
+            if(entry instanceof Cost){
+                costSum+= entry.getSum().doubleValue();
+            }
+        }
+        return incomeSum - costSum;
+    }
+
     public void removeIncome(int index) {
-        Iterator<Income> iterator = incomes.iterator();
+        Iterator<Entry> iterator = entries.iterator();
         while (iterator.hasNext()) {
-            Income income = iterator.next();
-            if (income.getIndex() == index) ;
+            Entry entry = iterator.next();
+            if (entry instanceof Income income &&
+                    income.getIndex() == index) ;
             iterator.remove();
             break;
         }
     }
 
     public void removeCost(int index) {
-        Iterator<Cost> iterator = costs.iterator();
+        Iterator<Entry> iterator = entries.iterator();
         while (iterator.hasNext()) {
-            Cost cost = iterator.next();
-            if (cost.getIndex() == index) ;
+            Entry entry = iterator.next();
+            if (entry instanceof  Cost cost &&
+                    cost.getIndex() == index) ;
             iterator.remove();
             break;
         }

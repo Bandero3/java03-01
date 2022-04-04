@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 //Dasideti galimybe gauti informacija islaidas apie pajamas pasirasyti metodeli kuris gauna informacija apie islaidas
@@ -67,7 +66,7 @@ public class Main {
         String category = scanner.nextLine();
         System.out.printf("Iveskite islaidu tipa: %s\n", Arrays.toString(CostTypes.values()));
         String type = scanner.nextLine();
-        budget.setCost(new Cost(new BigDecimal(sum), LocalDateTime.now(), TransferStatus.DONE, CostTypes.valueOf(type),CostCategory.valueOf(category)));
+        budget.addEntry(new Cost(new BigDecimal(sum), LocalDateTime.now(), TransferStatus.DONE, CostTypes.valueOf(type),CostCategory.valueOf(category)));
     }
 
     private void createIncome(Scanner scanner, Budget budget){
@@ -75,7 +74,7 @@ public class Main {
         String value = scanner.nextLine();
         System.out.printf("Iveskite pajamu kategorija: %s\n", Arrays.toString(IncomeCategory.values()));
         String category = scanner.nextLine();
-        budget.setIncome(new Income(new BigDecimal(value), LocalDate.now(), new Person("Andrius", "Baltrunas"), TransferStatus.DONE, true, IncomeCategory.valueOf(category)));
+        budget.addEntry(new Income(new BigDecimal(value), LocalDateTime.now(), new Person("Andrius", "Baltrunas"), TransferStatus.DONE, true, IncomeCategory.valueOf(category)));
     }
 
     private void getCost(Scanner scanner, Budget budget){
@@ -111,12 +110,12 @@ public class Main {
     }
 
     private void showIncomes(Budget budget){
-        for(Income i: budget.getIncomes()){
+        for(Entry i: budget.getIncomes()){
             System.out.println(i);
         }
     }
     private void showCosts(Budget budget){
-        for(Cost c: budget.getCosts()){
+        for(Entry c: budget.getCosts()){
             System.out.println(c);
         }
     }
