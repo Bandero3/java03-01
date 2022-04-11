@@ -102,4 +102,13 @@ public class Budget {
         }
     }
 
+    public Income findIncome(int id){
+        for(Entry entry : entries){
+            if(entry instanceof Income income && income.getIndex() == id){
+                return income;
+            }
+        }
+        return null;
+    }
+
 }

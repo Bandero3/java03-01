@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Entry {
     private final int index;
-    private final BigDecimal sum;
+    private BigDecimal sum;
     private final LocalDateTime date;
     private final Person person;
     private final TransferStatus transferStatus;
@@ -16,6 +16,10 @@ public class Entry {
         this.date = date;
         this.person = person;
         this.transferStatus = transferStatus;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
     }
 
     public int getIndex() {

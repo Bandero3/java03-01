@@ -41,8 +41,39 @@ public class Main {
             case "8" -> showIncomes(budget);
             case "9" -> removeCost(scanner,budget);
             case "10" -> removeIncome(scanner,budget);
+            case "11" -> updateIncome(scanner, budget);
             default -> System.out.println("Tokio veiksmo nera");
         }
+    }
+
+    private void updateIncome(Scanner scanner, Budget budget) {
+        System.out.println("Iveskite id kurias pajamas norite atnaujinti");
+        int id = Integer.parseInt(scanner.nextLine());
+        Income income = budget.findIncome(id);
+
+        if(income == null){
+            System.out.printf("Pajamu pagal id:%d nerasta, patikrinkite id\n", id);
+            return;
+        }
+
+
+        String newSum = getNewValue("Suma %.2f", income.getSum().doubleValue(), scanner);
+        income.setSum(newSum != null ? new BigDecimal(newSum) : income.getSum());
+        String newName = getNewValue("Person name %s", income.getPerson().getName(), scanner);
+        income.getPerson().setName(newName != null ? newName : income.getPerson().getName());
+
+    }
+
+    private String getNewValue(String template, Object object, Scanner scanner){
+        System.out.printf(template+"\n", object);
+        System.out.println("1 - redaguoti, 2 - toliau");
+        String action = scanner.nextLine();
+
+        if(action.equals("1")){
+            System.out.println("Iveskite nauja reiksme:");
+            return scanner.nextLine();
+        }
+        return null;
     }
 
     private void menu(){
@@ -56,7 +87,8 @@ public class Main {
                 7. Visos islaidos
                 8. Visos pajamos
                 9. Istrinti islaidas
-                10. Istrinti pajamas""");
+                10. Istrinti pajamas
+                11. Atnaujinti pajamas""");
     }
 
     private void createCost(Scanner scanner, Budget budget){

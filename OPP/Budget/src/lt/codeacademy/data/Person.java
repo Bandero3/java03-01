@@ -1,8 +1,8 @@
 package lt.codeacademy.data;
 
 public class Person {
-    private final String name;
-    private final String surname;
+    private String name;
+    private String surname;
 
     public Person(String name, String surname) {
         this.name = name;
@@ -15,6 +15,14 @@ public class Person {
 
     public String getSurname() {
         return surname;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     @Override
