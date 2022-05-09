@@ -13,7 +13,7 @@ public class FileOutputStreamExample {
         String line = scanner.nextLine();
 
         File file = new File("output.txt");
-        if(file.exists()){
+        if(!file.exists()){
             try {
                 file.createNewFile();
             } catch (IOException e) {

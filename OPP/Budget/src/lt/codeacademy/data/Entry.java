@@ -2,6 +2,7 @@ package lt.codeacademy.data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Entry {
     private final int index;
@@ -46,7 +47,7 @@ public class Entry {
     public String toString() {
         return ", index=" + index +
                 ", sum=" + sum +
-                ", date=" + date +
+                ", date=" + date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) +
                 ", person=" + person +
                 ", transferStatus=" + transferStatus +
                 '}';

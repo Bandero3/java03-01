@@ -12,11 +12,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Budget {
-    private final List<Entry> entries;
+    public final List<Entry> entries;
 
     public Budget() {
         entries = new ArrayList<>();
     }
+
     public void addEntry(Entry entry) {
         entries.add(entry);
     }
@@ -24,8 +25,8 @@ public class Budget {
 
     public List<Income> getIncomes() {
         List<Income> incomes = new ArrayList<>();
-        for(Entry entry : entries){
-            if(entry instanceof Income income){
+        for (Entry entry : entries) {
+            if (entry instanceof Income income) {
                 incomes.add(income);
             }
         }
@@ -34,8 +35,8 @@ public class Budget {
 
     public List<Cost> getCosts() {
         List<Cost> costs = new ArrayList<>();
-        for(Entry entry : entries){
-            if(entry instanceof Cost cost){
+        for (Entry entry : entries) {
+            if (entry instanceof Cost cost) {
                 costs.add(cost);
             }
         }
@@ -44,7 +45,7 @@ public class Budget {
 
     public Income getIncome(IncomeCategory category, LocalDate localDate) {
         for (Entry entry : entries) {
-            if (entry instanceof  Income income
+            if (entry instanceof Income income
                     && category.equals(income.getIncomeCategory())
                     && localDate.isEqual(income.getDate().toLocalDate())) {
                 return income;
@@ -68,13 +69,13 @@ public class Budget {
         double incomeSum = 0;
         double costSum = 0;
         for (Entry entry : entries) {
-            if(entry instanceof Income){
+            if (entry instanceof Income) {
 
             }
             incomeSum += entry.getSum().doubleValue();
 
-            if(entry instanceof Cost){
-                costSum+= entry.getSum().doubleValue();
+            if (entry instanceof Cost) {
+                costSum += entry.getSum().doubleValue();
             }
         }
         return incomeSum - costSum;
@@ -85,9 +86,10 @@ public class Budget {
         while (iterator.hasNext()) {
             Entry entry = iterator.next();
             if (entry instanceof Income income &&
-                    income.getIndex() == index) ;
-            iterator.remove();
-            break;
+                    income.getIndex() == index) {
+                iterator.remove();
+                break;
+            }
         }
     }
 
@@ -95,16 +97,18 @@ public class Budget {
         Iterator<Entry> iterator = entries.iterator();
         while (iterator.hasNext()) {
             Entry entry = iterator.next();
-            if (entry instanceof  Cost cost &&
-                    cost.getIndex() == index) ;
-            iterator.remove();
-            break;
+            if (entry instanceof Cost cost &&
+                    cost.getIndex() == index) {
+                iterator.remove();
+                break;
+            }
+
         }
     }
 
-    public Income findIncome(int id){
-        for(Entry entry : entries){
-            if(entry instanceof Income income && income.getIndex() == id){
+    public Income findIncome(int id) {
+        for (Entry entry : entries) {
+            if (entry instanceof Income income && income.getIndex() == id) {
                 return income;
             }
         }

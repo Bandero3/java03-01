@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lt.codeacademy.firstjavafxexample.HelloController">
+   <children>
+      <Label alignment="CENTER" layoutY="20.0" prefHeight="64.0" prefWidth="852.0" text="Sveiki atvyke :)" textAlignment="CENTER" textFill="#7c1818">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dayTextField" alignment="CENTER" layoutX="251.0" layoutY="140.0" prefHeight="52.0" prefWidth="370.0" promptText="Kokia siandien diena?">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </TextField>
+      <Button layoutX="358.0" layoutY="203.0" mnemonicParsing="false" onAction="#onDayClick" prefHeight="46.0" prefWidth="155.0" text="Click ME!" />
+      <Label fx:id="dayLabel" alignment="CENTER" layoutX="250.0" layoutY="76.0" prefHeight="35.0" prefWidth="370.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
